@@ -66,12 +66,6 @@ def index():
                 logging.info('Error occured at bigbox')
                 # raise CustomException(e,sys)
 
-            # Move the MongoDB connection and data insertion outside the for loop
-            client = pymongo.MongoClient("mongodb+srv://pwskills:pwskills@cluster0.ejsgmu3.mongodb.net/?retryWrites=true&w=majority")
-            db = client["my_web_scrap"]
-            scrap_col = db["my_web_scrap_data"]
-            scrap_col.insert_many(products)
-
             return render_template("result.html", products=products, success_message="Data scraped and inserted successfully!")  # Pass the products list and success message to the template
 
         except Exception as e:
